@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多个div移入变宽</title>
+	<style type="text/css">
+		div{width: 100px;height: 100px;margin-top: 20px;background-color: red;}
+	</style>
+</head>
+
+<body>
+<div></div>
+<div></div>	
+<div></div>	
+
+<script>
+	window.onload=function(){
+		var oDiv=document.getElementsByTagName('div');
+		for(var i=0;i<oDiv.length;i++){
+			oDiv[i].onmouseover=function(){
+				startMove(this,400);
+			}
+			oDiv[i].onmouseout=function(){
+				startMove(this,100);
+			}
+		}
+	}
+	function startMove(obj,itarget){
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			var speed=(itarget-obj.offsetWidth)/6;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(obj.offsetWidth==itarget){
+				clearInterval(obj.timer);
+			}
+			else{
+				obj.style.width=obj.offsetWidth+speed+'px';
+			}
+		},30);
+	}
+</script>
+
+</body>
+</html>
