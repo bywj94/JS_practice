@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运动框架</title>
+	<style type="text/css">
+		div{width: 200px;height: 200px;background-color: red;margin:20px;float: left;font-size: 14px;}
+		#div4{filter: alpha(opacity:30);opacity: 0.3;background-color: yellow;width: 200px;height: 200px;}
+	</style>
+</head>
+<body>
+<div id="div1">鼠标移入变高</div>
+<div id="div2">鼠标移入变宽</div>	
+<div id="div3">移入字体变大</div>
+<div id="div4">移入改变透明度</div>
+<script type="text/javascript">
+	window.onload=function(){   //应用运动框架而实现的几个案例
+		var div1=document.getElementById('div1');
+		var div2=document.getElementById('div2');
+		var div3=document.getElementById('div3');
+		var div4=document.getElementById('div4');
+		//对div1进行移入变高
+		div1.onmouseover=function(){
+			startMove(this,'height',400);
+		}
+		div1.onmouseout=function(){
+			startMove(this,'height',200);
+		}
+		//对div2进行移入变宽
+		div2.onmouseover=function(){
+			startMove(this,'width',400);
+		}
+		div2.onmouseout=function(){
+			startMove(this,'width',200);
+		}
+		//对div3进行移入字体变大
+		div3.onmouseover=function(){
+			startMove(this,'font-size',50);
+		}
+		div3.onmouseout=function(){
+			startMove(this,'font-size',14);
+		}
+		//对div4进行移入改变透明度	
+		div4.onmouseover=function(){
+			startMove(this,'opacity',100);
+		}
+		div4.onmouseout=function(){
+			startMove(this,'opacity',30);                //由这四个例子可以知道一个运动框架可以实现不同运动形式
+		}												
+	}
+
+
+	function getStyle(obj,name){   //获取非行间样式
+		if(obj.currentStyle){
+			return obj.currentStyle[name];
+		}
+		else{
+			return getComputedStyle(obj,false)[name];
+		
+		}
+	}
+
+	function startMove(obj,kind,itarget){  //运动框架
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			var cur=0;
+			if(kind=='opacity'){
+				cur=Math.round(parseFloat(getStyle(obj,kind))*100);
+			}else{
+				cur=parseInt(getStyle(obj,kind))
+			}
+			var speed=(itarget-cur)/5;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(cur==itarget){
+				clearInterval(obj.timer);
+			}else{
+				if(kind=='opacity'){
+					obj.style.filter='alpha(opacity:'+(speed+cur)+')';
+					obj.style.opacity=(cur+speed)/100;
+				}else{
+					obj.style[kind]=cur+speed+'px';
+				}	
+			}
+		},30);
+	}
+</script>
+</body>
+</html>
