@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#div1{
+			width: 900px;
+			height: 600px;
+			background-color:#EFEFEF;
+			padding:20px;
+			position: relative;
+			z-index: 1;
+		}
+		.span1{
+			font-size: 22px;
+			font-weight: 700;
+		}
+		#btn{
+			display: inline-block;
+			width: 100px;
+			height: 40px;
+			background-color: red;
+			color: #fff;
+		}
+		#show{
+			width: 100px;
+			height: 100px;
+			border:3px solid black;
+			margin-top: 30px;
+			background-color: #fff;
+		}
+		#set{
+			background-color: #fff;
+			width: 300px;
+			height: 200px;
+			border:20px solid #9C949C;
+			position: absolute;
+			right: 30px;
+			top: 320px;
+			display: none;
+			z-index: 3;
+		}
+		#set p{
+			width: 300px;
+			height: 35px;
+			font-size: 16px;
+			line-height: 35px;
+			margin-left: 20px;
+		}
+		
+		#set p span:not(.head){
+			display: inline-block;
+			width: 35px;
+			height: 35px;
+			font-size: 12px;
+			color: #fff;
+			text-align: center;
+			cursor: pointer;
+		}
+		#set .p1 span:nth-child(2){
+			background-color: red;
+			opacity: 0.7;
+			width: 37px;
+		}
+		#set .p1 span:nth-child(3){
+			background-color:#FFA500;
+			opacity: 0.7;
+			width: 37px;
+		}
+		#set .p1 span:nth-child(4){
+			background-color: blue;
+			opacity: 0.7;
+			width: 37px;
+		}
+		#set .p2 span:not(.head){
+			background-color:#D3D3D3;
+			color: 	#696969;
+			border:1px solid #A9A9A9;
+		}
+		#set .p3 span:not(.head){
+			background-color:#D3D3D3;
+			color: 	#696969;
+			border:1px solid #A9A9A9;
+		}
+		#set input{
+			display: inline-block;
+			width: 60px;
+			height: 30px;
+			background-color: rgb(0,41,82);
+			color: white;
+		}
+		#set input[value="恢复"]{
+			margin-left: 87px;
+		}
+	</style>
+</head>
+<body>
+<div id="div1">
+<span class="span1">请为下面的DIV设置样式：</span>
+<input type="button" id="btn" value="点击设置">
+<div id="show"></div>
+
+<div id="set">
+	<p class="p1">
+	<span class="head" style="letter-spacing: 2.5px;">请选择背景色：</span>
+	<span id="red">红</span>
+	<span id="yellow">黄</span>
+	<span id="blue">蓝</span>
+	</p>
+	<p class="p2">
+	<span class="head">请选择宽（px）：</span>
+	<span id="tw-w">200</span>
+	<span id="th-w">300</span>
+	<span id="fo-w">400</span>
+	</p>
+	<p class="p3">
+	<span class="head">请选择高（px）：</span>
+	<span id="tw-t">200</span>
+	<span id="th-t">300</span>
+	<span id="fo-t">400</span>
+	</p>
+	<input id="recover" type="button" value="恢复">
+	<input id="confirm" type="button" value="确定">
+</div>
+</div>
+
+<script src="./num1.js"></script>
+</body>
+</html>
