@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QQ列表展开收缩扩展</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding:0;
+	}
+	#list{
+		width: 200px;
+		border:1px solid #000;
+		margin: 0 auto;
+	}
+	li{
+		list-style: none;
+	}
+	h2{
+		text-indent: 20px;
+		font-size: 20px;
+		width: 200px;
+		height: 30px;
+		line-height: 30px;
+		background: url('icon1.png') no-repeat left;
+		background-color: #abcdef;
+		cursor: pointer;
+	}
+	.active{
+		background: url('icon2.png') no-repeat left;
+		background-color:#F4A460;
+	}
+	.Li li{
+		width: 200px;
+		height: 30px;
+		font-size: 15px;
+		text-indent: 20px;
+		line-height: 30px;
+		border-bottom:1px solid #A9A9A9;
+		cursor: default;
+	}
+	.Li ul{
+		display: none;
+	}
+	.active2{
+		background-color: #abcdef;
+	}
+	</style>
+</head>
+<body>
+	<ul id="list">
+		<li class="Li">
+			<h2>七里香</h2>
+			<ul>
+				<li>我的地盘</li>
+				<li>七里香</li>
+				<li>借口</li>
+				<li>搁浅</li>
+				<li>。。。</li>
+			</ul>
+		</li>
+
+		<li class="Li">
+			<h2>范特西</h2>
+			<ul>
+				<li>爱在西元前</li>
+				<li>简单爱</li>
+				<li>开不了口</li>
+				<li>上海一九四三</li>
+				<li>。。。</li>
+			</ul>
+		</li>
+
+		<li class="Li">
+			<h2>八度空间</h2>
+			<ul>
+				<li>半岛铁盒</li>
+				<li>暗号</li>
+				<li>回到过去</li>
+				<li>最后的战役</li>
+				<li>。。。</li>
+			</ul>
+		</li>
+	</ul>
+
+<script src="./script.js"></script>
+</body>
+</html>
