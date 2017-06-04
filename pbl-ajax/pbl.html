@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流</title>
+	<style type="text/css">
+		body{margin:0;padding:0;}
+		ul{width: 1100px;margin:30px auto;}
+		li{list-style: none;width: 240px;margin-right: 10px;float: left;}
+		li div{width: 240px;border:1px solid black;margin-bottom: 10px;}
+		li div img{width: 240px;}
+	</style>
+	<script src='ajax.js'></script>
+	<script>
+		window.onload=function(){
+
+			var oUl=document.getElementById('ul1');
+			var aLi=oUl.getElementsByTagName('li');
+			var iLen=aLi.length;
+
+			//初始化数据处理
+			getpic();
+			function getpic(){
+				ajax('get','pic.json','',function(tex){
+				var data=JSON.parse(tex);
+				for(var i=0;i<tex.length;i++){
+
+					
+					var _index=getShort(); //获取高度最短的li
+
+					var oDiv=document.createElement('div');
+					var oImg=document.createElement('img');
+					oImg.src=data[i].preview;
+					oImg.style.width='240px';
+					oImg.style.height=data[i].height*(240/data[i].width)+'px';
+					var oP=document.createElement('p');
+					oP.innerHTML=data[i].title;
+					oDiv.appendChild(oImg);
+					oDiv.appendChild(oP);
+					aLi[_index].appendChild(oDiv);
+
+				}
+			});
+			}
+
+			window.onscroll=function(){
+				var _index=getShort();
+				var oLi=aLi[_index];
+				var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+				if(getTop(oLi)+oLi.offsetHeight<document.documentElement.clientHeight+scrollTop){
+						getpic();
+				}
+			}
+
+			//获取最短高的li的索引值
+			function getShort(){
+				var index=0;
+				var ih=aLi[index].offsetHeight;
+				for(var i=1;i<iLen;i++){
+					if(aLi[i].offsetHeight<ih){
+						index=i;
+						ih=aLi[i].offsetHeight;
+					}
+				}
+				return index;
+			}
+
+			//获取top
+			function getTop(obj){
+				var iTop=0;
+				while(obj){
+					iTop+=obj.offsetTop;
+					obj=obj.offsetParent;
+				}
+				return iTop;
+			}
+		}
+	</script>
+</head>
+<body>
+	<ul id="ul1">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>	
+</body>
+</html>
